@@ -1,0 +1,400 @@
+basePath: /api/v1
+definitions:
+  dto.ErrorResponseDto:
+    properties:
+      code:
+        type: string
+      details:
+        items:
+          type: string
+        type: array
+      error:
+        type: string
+    type: object
+  dto.PeginStateResponseDto:
+    properties:
+      amount:
+        type: string
+      base:
+        type: string
+      exchange:
+        type: string
+      fee:
+        type: string
+      id:
+        type: string
+      quote:
+        type: string
+      status:
+        type: string
+    type: object
+  dto.PriceResponseDto:
+    properties:
+      amount:
+        type: string
+      base:
+        type: string
+      deadline:
+        type: integer
+      exchange:
+        type: string
+      fee:
+        type: string
+      quote:
+        type: string
+    type: object
+  dto.PriceSignatureResponseDto:
+    properties:
+      baseAgent:
+        type: string
+      nonce:
+        type: string
+      signature:
+        type: string
+      signer:
+        type: string
+    type: object
+  dto.RetryFailedSwapsResponseDto:
+    properties:
+      err_msg:
+        type: string
+      rejected_swap_id_list:
+        items:
+          type: integer
+        type: array
+      swap_id_list:
+        items:
+          type: integer
+        type: array
+    type: object
+  dto.UpdateSwapPairResponseDto:
+    properties:
+      available:
+        type: boolean
+      bep_20_addr:
+        type: string
+      decimals:
+        type: integer
+      erc_20_addr:
+        type: string
+      icon_url:
+        type: string
+      low_bound:
+        type: string
+      name:
+        type: string
+      record_hash:
+        type: string
+      sponsor:
+        type: string
+      symbol:
+        type: string
+      upper_bound:
+        type: string
+    type: object
+  dto.WithdrawTokenResponseDto:
+    properties:
+      err_msg:
+        type: string
+      tx_hash:
+        type: string
+    type: object
+host: dev-totem-bridge-offchain-lidbscqqia-uc.a.run.app
+info:
+  contact: {}
+  description: 'Totem Bridge Off Chain Service : This is a Bridge server.'
+  title: Totem Bridge Off Chain API
+  version: "1.0"
+paths:
+  /admin/retry_failed_swaps:
+    post:
+      consumes:
+      - application/json
+      description: The Retry Failed Swaps API
+      parameters:
+      - description: SwapIDList
+        in: formData
+        name: swap_id_list
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.RetryFailedSwapsResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+      summary: RetryFailedSwaps
+      tags:
+      - admin
+  /admin/update_swap_pair:
+    put:
+      consumes:
+      - application/json
+      description: The Update Swap Pair API
+      parameters:
+      - description: ERC20Addr
+        in: formData
+        name: erc20_addr
+        required: true
+        type: string
+      - description: Available
+        in: formData
+        name: available
+        required: true
+        type: string
+      - description: LowerBound
+        in: formData
+        name: lower_bound
+        required: true
+        type: string
+      - description: UpperBound
+        in: formData
+        name: upper_bound
+        required: true
+        type: string
+      - description: IconUrl
+        in: formData
+        name: icon_url
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UpdateSwapPairResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+      summary: UpdateSwapPairHandler
+      tags:
+      - admin
+  /admin/withdraw_token:
+    post:
+      consumes:
+      - application/json
+      description: The With Draw Token API
+      parameters:
+      - description: Chain
+        in: formData
+        name: chain
+        required: true
+        type: string
+      - description: TokenAddr
+        in: formData
+        name: token_addr
+        required: true
+        type: string
+      - description: Recipient
+        in: formData
+        name: recipient
+        required: true
+        type: string
+      - description: Amount
+        in: formData
+        name: amount
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.WithdrawTokenResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+      summary: WithdrawToken
+      tags:
+      - admin
+  /bridge/pegin/state:
+    get:
+      consumes:
+      - application/json
+      description: The Price Signature API
+      parameters:
+      - description: Account
+        in: query
+        name: account
+        required: true
+        type: string
+      - description: Network
+        in: query
+        name: network
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PeginStateResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+      summary: peginStateHandler
+      tags:
+      - bridge
+  /bridge/price:
+    get:
+      consumes:
+      - application/json
+      description: The Price API Specifications
+      parameters:
+      - description: Base
+        in: query
+        name: base
+        required: true
+        type: string
+      - description: Quote
+        in: query
+        name: quote
+        required: true
+        type: string
+      - description: Amount
+        in: query
+        name: amount
+        required: true
+        type: string
+      - description: Account
+        in: query
+        name: account
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PriceResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+      summary: makePriceHandler
+      tags:
+      - bridge
+  /bridge/price/signature:
+    get:
+      consumes:
+      - application/json
+      description: The Price Signature API
+      parameters:
+      - description: Account
+        in: query
+        name: account
+        required: true
+        type: string
+      - description: Base
+        in: query
+        name: base
+        required: true
+        type: string
+      - description: Quote
+        in: query
+        name: quote
+        required: true
+        type: string
+      - description: Amount
+        in: query
+        name: amount
+        required: true
+        type: string
+      - description: Fee
+        in: query
+        name: fee
+        required: true
+        type: string
+      - description: Exchange
+        in: query
+        name: exchange
+        required: true
+        type: string
+      - description: Deadline
+        in: query
+        name: deadline
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.PriceSignatureResponseDto'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.ErrorResponseDto'
+      summary: makePriceSignatureHandler
+      tags:
+      - bridge
+schemes:
+- https
+- http
+securityDefinitions:
+  bearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

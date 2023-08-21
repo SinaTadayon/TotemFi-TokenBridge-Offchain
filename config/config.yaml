@@ -1,0 +1,54 @@
+key_manager_config:
+  api_key: "anSSUGTv79eJ2LfU3fbNKU7FCcrZSSfTnRKViPEBYaULaQ7FhD9JyCs8WzaG5g7q"
+  hmac_key: "6Xnswj2GjUzB7TwnTUtE"
+  coin_marketcap_api_key: "cfcb296e-53eb-4254-8fd2-19ac6e9daa72"
+  bsc_private_key: "7f0b1b290b0dcd8ed3fb2a9fca799ee54ca48eebdf0b0f9482b71bb62a3dadb5"
+  mts_private_key: "7f0b1b290b0dcd8ed3fb2a9fca799ee54ca48eebdf0b0f9482b71bb62a3dadb5"
+
+db_config:
+  postgres_user: "totem-bridge-offchain"
+  postgres_host: "localhost"
+  postgres_port: 5432
+  postgres_pwd: "totembridgeoffchain2022@)@)"
+  postgres_db: "totem-bridge-offchain"
+  postgres_connect_name: ""
+
+chain_config:
+  balance_monitor_interval: 60
+  swap_router_trade_fee: 0.2
+  bridge_tax_fee: 3.0
+  bsc_observer_fetch_interval: 10
+  bsc_start_height: 0
+  bsc_provider: "https://data-seed-prebsc-1-s1.binance.org:8545/"
+  bsc_confirm_num: 10
+  bsc_swap_agent_addr: "0x6B54826f61A75c30446804a2186a61Dfb1742173"
+  bsc_explorer_url: "https://testnet.bscscan.com/"
+  bsc_max_track_retry: 60
+  bsc_totem_address: "0x6ff1bfa14a57594a5874b37ff6ac5efbd9f9599a"
+  bsc_wait_milli_sec_between_swaps: 100
+  bsc_agent_gas_limit: 350000
+  mts_observer_fetch_interval: 10
+  mts_start_height: 0
+  mts_provider: "https://stardust.metis.io/?owner=588"
+  mts_confirm_num: 10
+  mts_swap_agent_addr: "0x5450d0DaDa98570278ab82C377fD5F5315F3c3A2"
+  mts_explorer_url: "https://stardust-explorer.metis.io/"
+  mts_max_track_retry: 60
+  mts_totem_address: "0xbB8e929894B49fc83925C1b59592dcD43A2D6Fbe"
+  mts_wait_milli_sec_between_swaps: 200
+  mts_lower_bound_amount: 0
+  mts_upper_bound_amount: 10
+  mts_agent_gas_limit: 900000
+
+log_config:
+  level: "INFO"
+  filename: "build/test.log"
+  max_file_size_in_mb: 100
+  max_backups_of_log_files: 1
+  max_age_to_retain_log_files_in_days: 30
+  use_console_logger: true
+  use_file_logger: true
+  compress: false
+
+server_config:
+  listen_addr: ":5050"

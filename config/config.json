@@ -1,0 +1,50 @@
+{
+  "key_manager_config": {
+    "api_key": "anSSUGTv79eJ2LfU3fbNKU7FCcrZSSfTnRKViPEBYaULaQ7FhD9JyCs8WzaG5g7q",
+    "hmac_key": "6Xnswj2GjUzB7TwnTUtE",
+    "bsc_private_key": "7f0b1b290b0dcd8ed3fb2a9fca799ee54ca48eebdf0b0f9482b71bb62a3dadb5",
+    "mts_private_key": "7f0b1b290b0dcd8ed3fb2a9fca799ee54ca48eebdf0b0f9482b71bb62a3dadb5"
+  },
+  "db_config": {
+    "postgres_user": "totem-bridge-offchain",
+    "postgres_host": "localhost",
+    "postgres_port": 5432,
+    "postgres_pwd": "totembridgeoffchain2022@)@)",
+    "postgres_db": "totem-bridge-offchain",
+    "postgres_connect_name": ""
+  },
+  "chain_config": {
+    "balance_monitor_interval": 60,
+    "bsc_observer_fetch_interval": 10,
+    "bsc_start_height": 17383615,
+    "bsc_provider": "https://data-seed-prebsc-1-s1.binance.org:8545/",
+    "bsc_confirm_num": 10,
+    "bsc_swap_agent_addr": "0x6B54826f61A75c30446804a2186a61Dfb1742173",
+    "bsc_explorer_url": "https://testnet.bscscan.com/",
+    "bsc_max_track_retry": 60,
+    "bnb_alert_threshold": "1000000000000000000",
+    "bsc_wait_milli_sec_between_swaps": 100,
+    "mts_observer_fetch_interval": 10,
+    "mts_start_height": 5198739,
+    "mts_provider": "https://stardust.metis.io/?owner=588",
+    "mts_confirm_num": 10,
+    "mts_swap_agent_addr": "0x4F8E3AADBB265B36539f1289BB8C27ae19C0b530",
+    "mts_explorer_url": "https://stardust-explorer.metis.io/",
+    "mts_max_track_retry": 60,
+    "mts_alert_threshold": "1000000000000000000",
+    "mts_wait_milli_sec_between_swaps": 200
+  },
+  "log_config": {
+    "level": "INFO",
+    "filename": "build/test.log",
+    "max_file_size_in_mb": 100,
+    "max_backups_of_log_files": 1,
+    "max_age_to_retain_log_files_in_days": 30,
+    "use_console_logger": true,
+    "use_file_logger": true,
+    "compress": false
+  },
+  "server_config": {
+    "listen_addr": ":5050"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+cache
+artifacts
+.env
+export
+vendor
+configs/config-default.yaml
+__debug_bin
+.idea/
